@@ -11,6 +11,8 @@ export class AllProductsComponent implements OnInit {
   products:any[]=[]; 
   categories: any[] = []; 
   spinner: boolean;
+  cartItems:any[]=[];
+  
   constructor(private productstsService: ProductstsService) { }
 
   ngOnInit(): void {
@@ -60,5 +62,23 @@ export class AllProductsComponent implements OnInit {
       )
     
      }
-   }
+  }
+  
+  addToCart(event) { // add to cart function
+    console.log(event);
+    if ('cart' in localStorage) { // if cart is in localStorage
+      this.cartItems = JSON.parse(localStorage.getItem('cart')); // get the cart from localStorage
+      let itemInCart = this.cartItems.find(item => item.item.id == event.item.id); // find the item in the cart
+      if (itemInCart) {
+        alert('Item already in cart'); // if item is in the cart, alert the user
+      } else {
+        this.cartItems.push(event); // add the event to the cart
+        localStorage.setItem('cart', JSON.stringify(this.cartItems)); // set the cart to localStorage
+      }
+      
+    } else { // if cart is not in localStorage
+      this.cartItems.push(event); // add the event to the cart
+      localStorage.setItem('cart', JSON.stringify(this.cartItems)); // set the cart to localStorage
+    }
+  } // end addToCart fn
 }

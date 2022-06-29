@@ -1,1 +1,23 @@
-<p>products-details works!</p>
+<div class="box mt-5">
+    <div class="text-center">
+        <app-spinner *ngIf="spinner"></app-spinner>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-12">
+            <img [src]="product?.image" alt="">
+        </div>
+        <div class="col-md-7 col-sm-12">
+            <div class="info">
+                <ul class="list-unstyled" *ngIf="product">
+                    <li>Title:<strong>{{product?.title}}</strong></li>
+                    <li>Category:<strong>{{product?.category}}</strong></li>
+                    <li>Description:<strong>{{product?.description}}</strong></li>
+                    <li>Rate:<strong>{{product?.rating.rate}}</strong></li>
+                    <li>Count:<strong>{{product?.rating.count}}</strong></li>
+                    <li>Price:<strong>{{product?.price | currency:'USD'}}</strong></li>
+                 
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
