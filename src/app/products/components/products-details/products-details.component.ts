@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductsDetailsComponent implements OnInit {
 
   id;
-  product;
+  product:any;
   spinner: boolean;
   constructor(private route: ActivatedRoute, private productstsService:ProductstsService) { }
 
